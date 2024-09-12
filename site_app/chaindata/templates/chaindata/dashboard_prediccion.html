@@ -1,0 +1,33 @@
+{% extends 'chaindata/base.html' %} 
+
+{% block changes %}
+    
+    <h1> Prediccion de Demanda </h1>
+    <canvas id="prediccionChart"></canvas>
+
+    <script>
+        fetch('prediccion')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('prediccionChart').getContext('2d');
+                new Chart(ctx,{
+                    type: 'line',
+                    data: {
+                        labels: ['semana 1', 'semana 2'],
+                        datasets: [{
+                            label: 'Prediccion de demanda',
+                            data : data.predicciones,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2
+                        }]
+                    }
+                })
+            })
+    </script>
+
+
+
+
+
+{% endblock changes %}
+    
