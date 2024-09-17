@@ -1,0 +1,28 @@
+{% extends 'chaindata/base.html' %}
+
+{% block titulo %} Login {% endblock titulo %}
+
+{% block changes %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+{% endblock changes %}
